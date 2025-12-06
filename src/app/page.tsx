@@ -55,14 +55,19 @@ function HeroSection() {
       </motion.div>
 
       <motion.div style={{ y, opacity }} className="z-10 flex-1 flex flex-col justify-center">
-        <TechText className="block mb-4 md:mb-6 text-[10px] md:text-sm tracking-[0.2em] md:tracking-[0.3em]">CHIEF UI/UX DESIGNER & CREATIVE FRONTEND DEVELOPER</TechText>
+        <TechText className="block mb-4 md:mb-6 text-[10px] md:text-sm tracking-[0.2em] md:tracking-[0.3em]">e/acc · PRODUCT MANAGER · INDIE DEVELOPER</TechText>
         <HugeTitle className="leading-[0.85] text-[13vw] md:text-[12vw]">
           不Coding<br />的haa
         </HugeTitle>
-        <div className="mt-8 md:mt-16 flex flex-col md:flex-row justify-between items-end max-w-6xl w-full">
-           <BodyText className="text-base md:text-3xl font-serif italic">
-            &quot;Radical Minimalism is not about emptiness,<br />it&apos;s about the extreme clarity of purpose.&quot;
-          </BodyText>
+        <div className="mt-8 md:mt-16 w-full flex justify-end">
+           <div className="flex flex-col gap-4 md:gap-6 text-right max-w-4xl">
+             <p className="font-serif text-lg md:text-3xl italic leading-relaxed text-foreground/90">
+               &quot;I know this age will wound.<br/>
+               But I have no choice except to feed the fire.<br/>
+               Not out of faith—<br/>
+               but because the moment it dies, so does civilization.&quot;
+             </p>
+           </div>
         </div>
       </motion.div>
 
@@ -98,14 +103,14 @@ function BioSection() {
               </BodyText>
             </div>
 
-            <div className="grid grid-cols-2 gap-8">
-               <div className="space-y-2">
+            <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-8">
+               <div className="space-y-1 md:space-y-2">
                   <TechText className="block text-accent">CONTACT</TechText>
-                  <a href="mailto:haayy@foxmail.com" className="font-sans text-lg hover:underline decoration-1 underline-offset-4">haayy@foxmail.com</a>
+                  <a href="mailto:haayy@foxmail.com" className="font-sans text-base md:text-lg hover:underline decoration-1 underline-offset-4 break-all">haayy@foxmail.com</a>
                </div>
-               <div className="space-y-2">
+               <div className="space-y-1 md:space-y-2">
                   <TechText className="block text-accent">LOCATION</TechText>
-                  <p className="font-sans text-lg">Fuzhou University</p>
+                  <p className="font-sans text-base md:text-lg">Fuzhou University</p>
                </div>
             </div>
           </div>

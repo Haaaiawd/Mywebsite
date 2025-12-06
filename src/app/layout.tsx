@@ -14,8 +14,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "不Coding的haa | Radical Minimalism",
-  description: "Chief UI/UX Designer & Creative Frontend Developer",
+  title: "不Coding的haa | Personal Website",
+  description: "e/acc · Product Manager · Indie Developer",
 };
 
 export default function RootLayout({
