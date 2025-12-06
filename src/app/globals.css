@@ -25,6 +25,9 @@ body {
   /* Scroll Snap */
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
+  /* Prevent mobile font size adjustment */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* Hide scrollbar for clean look but keep functionality */
