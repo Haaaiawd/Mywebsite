@@ -47,7 +47,6 @@ function HeroSection() {
            <TechText className="text-[10px] md:text-xs">26°04&apos;N 119°17&apos;E</TechText>
         </div>
         <div className="flex flex-col items-end">
-           <TechText className="text-[10px] md:text-xs">AVAILABLE FOR WORK</TechText>
            <TechText className="text-[10px] md:text-xs">
              {mounted ? `LOCAL TIME: ${new Date().toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})}` : 'LOCAL TIME: --:--'}
            </TechText>
@@ -74,7 +73,6 @@ function HeroSection() {
       {/* Bottom Bar */}
       <motion.div style={{ opacity }} className="flex justify-between items-end z-10 w-full border-t border-foreground/10 pt-3 md:pt-6">
          <TechText className="text-[10px] md:text-xs">SCROLL FOR EXPERIENCE</TechText>
-         <TechText className="text-[10px] md:text-xs">INDEX 01 / 07</TechText>
       </motion.div>
     </section>
   );
@@ -86,7 +84,6 @@ function BioSection() {
       <FadeIn className="h-full flex flex-col justify-between">
         <div className="flex justify-between items-baseline border-b border-foreground/10 pb-4 md:pb-6 mb-8 md:mb-12">
            <SectionHeader className="mb-0">About</SectionHeader>
-           <TechText>INDEX 02 / 07</TechText>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start h-full">
@@ -122,14 +119,27 @@ function BioSection() {
                 alt="Avatar" 
                 fill 
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
             <div className="grid grid-cols-2 md:flex md:flex-col gap-3 md:gap-4 md:h-[60vh]">
-               <div className="relative w-full h-[20vh] md:h-1/2 grayscale hover:grayscale-0 transition-all duration-500">
-                  <Image src="/images/gdg-cert.jpg" alt="GDG Certificate" fill className="object-cover" />
+                <div className="relative w-full h-[20vh] md:h-1/2 grayscale hover:grayscale-0 transition-all duration-500">
+                   <Image 
+                     src="/images/gdg-cert.jpg" 
+                     alt="GDG Certificate" 
+                     fill 
+                     className="object-cover" 
+                     sizes="(max-width: 768px) 50vw, 25vw"
+                   />
                 </div>
                 <div className="relative w-full h-[20vh] md:h-1/2 grayscale hover:grayscale-0 transition-all duration-500">
-                   <Image src="/images/datawhale-cert.jpg" alt="Datawhale Certificate" fill className="object-cover" />
+                   <Image 
+                     src="/images/datawhale-cert.jpg" 
+                     alt="Datawhale Certificate" 
+                     fill 
+                     className="object-cover" 
+                     sizes="(max-width: 768px) 50vw, 25vw"
+                   />
                 </div>
             </div>
           </div>
@@ -151,7 +161,6 @@ function SkillsSection() {
        <FadeIn className="h-full flex flex-col">
          <div className="flex justify-between items-baseline border-b border-foreground/10 pb-4 md:pb-6 mb-8 md:mb-16">
             <SectionHeader className="mb-0">Real Skills</SectionHeader>
-            <TechText>INDEX 03 / 07</TechText>
          </div>
          
          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 flex-1">
@@ -182,7 +191,6 @@ function ProjectsSection() {
       <FadeIn className="h-full flex flex-col">
         <div className="flex justify-between items-baseline border-b border-foreground/10 pb-4 md:pb-6 mb-8 md:mb-12">
             <SectionHeader className="mb-0">Selected Work</SectionHeader>
-            <TechText>INDEX 04 / 07</TechText>
         </div>
         
         <div className="flex-1 flex flex-col justify-center">
@@ -232,7 +240,6 @@ function AuraSection() {
       <FadeIn className="h-full flex flex-col">
         <div className="flex justify-between items-baseline border-b border-foreground/10 pb-4 md:pb-6 mb-8 md:mb-12">
             <SectionHeader className="mb-0">AURA Project</SectionHeader>
-            <TechText>INDEX 05 / 07</TechText>
         </div>
         
         <div className="flex-1 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
@@ -261,6 +268,7 @@ function AuraSection() {
               alt="AURA Project" 
               fill 
               className="object-contain"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
         </div>
@@ -275,7 +283,6 @@ function CommunitySection() {
        <FadeIn className="h-full flex flex-col">
          <div className="flex justify-between items-baseline border-b border-foreground/10 pb-4 md:pb-6 mb-8 md:mb-12">
             <SectionHeader className="mb-0">Community</SectionHeader>
-            <TechText>INDEX 06 / 07</TechText>
          </div>
          
          <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
@@ -288,7 +295,13 @@ function CommunitySection() {
                 Managing the campus AI community focused on cutting-edge AI tools and fostering the next generation of AI enthusiasts.
               </BodyText>
               <div className="relative h-24 md:h-32 w-48 md:w-64 grayscale hover:grayscale-0 transition-all duration-500">
-                 <Image src="/images/waytoagi.png" alt="WaytoAGI" fill className="object-contain object-left" />
+                 <Image 
+                   src="/images/waytoagi.png" 
+                   alt="WaytoAGI" 
+                   fill 
+                   className="object-contain object-left" 
+                   sizes="(max-width: 768px) 50vw, 25vw"
+                 />
               </div>
             </div>
             
