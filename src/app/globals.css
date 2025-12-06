@@ -5,7 +5,8 @@
   --background: #F2F0E9; /* Matte Warm Beige */
   --foreground: #1A1A1A; /* Almost Black */
   --secondary: #4A4A4A; /* Slate Grey */
-  --accent: #CBC4CB; /* Light Violet */
+  --accent: #8E8495; /* Readable Muted Violet for text */
+  --accent-light: #CBC4CB; /* Light Violet for decorations */
 }
 
 @theme inline {

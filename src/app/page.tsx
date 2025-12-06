@@ -55,9 +55,12 @@ function HeroSection() {
 
       <motion.div style={{ y, opacity }} className="z-10 flex-1 flex flex-col justify-center">
         <TechText className="block mb-4 md:mb-6 text-[10px] md:text-sm tracking-[0.2em] md:tracking-[0.3em]">e/acc · PRODUCT MANAGER · INDIE DEVELOPER</TechText>
-        <HugeTitle className="leading-[0.85] text-[13vw] md:text-[12vw]">
-          不Coding<br />的haa
-        </HugeTitle>
+        <div className="relative inline-block">
+          <HugeTitle className="leading-[0.85] text-[13vw] md:text-[12vw]">
+            不Coding<br />的haa
+          </HugeTitle>
+          <div className="absolute top-0 right-0 md:-right-8 w-4 h-4 md:w-8 md:h-8 rounded-full bg-[var(--accent-light)] blur-[1px]" />
+        </div>
         <div className="mt-8 md:mt-16 w-full flex justify-end">
            <div className="flex flex-col gap-4 md:gap-6 text-right max-w-4xl">
              <p className="font-serif text-lg md:text-3xl italic leading-relaxed text-foreground/90">
@@ -167,7 +170,7 @@ function SkillsSection() {
             {skills.map((skillGroup, index) => (
               <div key={skillGroup.category} className="flex flex-col border-l border-foreground/10 pl-4 md:pl-8">
                 <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-8">
-                   <span className="font-mono text-[10px] md:text-xs border border-foreground/20 rounded-full w-5 h-5 md:w-6 md:h-6 flex items-center justify-center">{index + 1}</span>
+                   <span className="font-mono text-[10px] md:text-xs border border-[var(--accent-light)] text-accent rounded-full w-5 h-5 md:w-6 md:h-6 flex items-center justify-center">{index + 1}</span>
                    <TechText className="text-accent tracking-widest">{skillGroup.category}</TechText>
                 </div>
                 <ul className="space-y-4">
