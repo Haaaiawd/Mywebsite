@@ -316,21 +316,21 @@ function CommunitySection() {
 
 function FooterSection() {
   return (
-    <footer className="min-h-screen snap-start flex flex-col">
+    <footer className="h-dvh snap-start flex flex-col">
       <div className="flex-1 grid grid-cols-1 md:grid-cols-2 h-full">
         <a 
           href="https://github.com/Haaaiawd" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="group relative border-r border-b md:border-b-0 border-foreground/10 flex flex-col justify-between p-12 hover:bg-foreground hover:text-background transition-colors duration-500"
+          className="group relative border-r border-b md:border-b-0 border-foreground/10 flex flex-col justify-between p-12 hover:bg-foreground hover:text-background active:bg-foreground active:text-background transition-colors duration-200"
         >
            <div className="flex justify-between items-start">
-              <TechText className="group-hover:text-background/70">SOCIAL LINK 01</TechText>
-              <span className="text-4xl group-hover:rotate-45 transition-transform duration-500">↗</span>
+              <TechText className="group-hover:text-background/70 group-active:text-background/70 transition-colors">SOCIAL LINK 01</TechText>
+              <span className="text-4xl group-hover:rotate-45 group-active:rotate-45 transition-transform duration-500">↗</span>
            </div>
            <div>
               <h3 className="font-serif text-[12vw] md:text-[8vw] leading-none mb-4">Github</h3>
-              <TechText className="group-hover:text-background/70">OPEN SOURCE & CONTRIBUTIONS</TechText>
+              <TechText className="group-hover:text-background/70 group-active:text-background/70 transition-colors">OPEN SOURCE & CONTRIBUTIONS</TechText>
            </div>
         </a>
 
@@ -338,22 +338,22 @@ function FooterSection() {
           href="https://www.xiaohongshu.com/user/profile/6365fe62000000001e00d8ed" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="group relative flex flex-col justify-between p-12 hover:bg-[#FF2442] hover:text-white transition-colors duration-500"
+          className="group relative flex flex-col justify-between p-12 hover:bg-[#FF2442] hover:text-white active:bg-[#FF2442] active:text-white transition-colors duration-200"
         >
            <div className="flex justify-between items-start">
-              <TechText className="group-hover:text-white/70">SOCIAL LINK 02</TechText>
-              <span className="text-4xl group-hover:rotate-45 transition-transform duration-500">↗</span>
+              <TechText className="group-hover:text-white/70 group-active:text-white/70 transition-colors">SOCIAL LINK 02</TechText>
+              <span className="text-4xl group-hover:rotate-45 group-active:rotate-45 transition-transform duration-500">↗</span>
            </div>
            <div>
               <h3 className="font-serif text-[12vw] md:text-[8vw] leading-none mb-4">RedNote</h3>
-              <TechText className="group-hover:text-white/70">LIFESTYLE & INSIGHTS</TechText>
+              <TechText className="group-hover:text-white/70 group-active:text-white/70 transition-colors">LIFESTYLE & INSIGHTS</TechText>
            </div>
         </a>
       </div>
 
-      <div className="border-t border-foreground/10 py-6 px-12 flex justify-between items-center bg-background">
-         <TechText>© 2025 HAAAIAWD</TechText>
-         <TechText>DESIGNED WITH RADICAL MINIMALISM</TechText>
+      <div className="border-t border-foreground/10 py-4 md:py-6 px-6 md:px-12 flex flex-col md:flex-row gap-2 md:gap-0 justify-center md:justify-between items-center bg-background text-center shrink-0">
+         <TechText className="text-[10px] md:text-xs">© 2025 HAAAIAWD & ANTIGRAVITY</TechText>
+         <TechText className="text-[10px] md:text-xs">DESIGNED WITH RADICAL MINIMALISM</TechText>
       </div>
     </footer>
   );
