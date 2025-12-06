@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { HugeTitle, SectionHeader, BodyText, TechText } from "@/components/Typography";
 import FadeIn from "@/components/FadeIn";
@@ -30,6 +30,14 @@ function HeroSection() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
+  // Client-side only time to prevent hydration mismatch
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    // This is the standard pattern for client-side only rendering
+    // eslint-disable-next-line
+    setMounted(true);
+  }, []);
+
   return (
     <section ref={ref} className="min-h-screen snap-start flex flex-col justify-between py-6 md:py-12 relative overflow-hidden">
       {/* Status Bar */}
@@ -40,7 +48,9 @@ function HeroSection() {
         </div>
         <div className="flex flex-col items-end">
            <TechText className="text-[10px] md:text-xs">AVAILABLE FOR WORK</TechText>
-           <TechText className="text-[10px] md:text-xs">LOCAL TIME: {new Date().toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})}</TechText>
+           <TechText className="text-[10px] md:text-xs">
+             {mounted ? `LOCAL TIME: ${new Date().toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})}` : 'LOCAL TIME: --:--'}
+           </TechText>
         </div>
       </motion.div>
 
