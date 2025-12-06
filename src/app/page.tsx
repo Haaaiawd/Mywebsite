@@ -55,12 +55,9 @@ function HeroSection() {
 
       <motion.div style={{ y, opacity }} className="z-10 flex-1 flex flex-col justify-center">
         <TechText className="block mb-4 md:mb-6 text-[10px] md:text-sm tracking-[0.2em] md:tracking-[0.3em]">e/acc · PRODUCT MANAGER · INDIE DEVELOPER</TechText>
-        <div className="relative inline-block">
-          <HugeTitle className="leading-[0.85] text-[13vw] md:text-[12vw]">
-            不Coding<br />的haa
-          </HugeTitle>
-          <div className="absolute top-0 right-0 md:-right-8 w-4 h-4 md:w-8 md:h-8 rounded-full bg-[var(--accent-light)] blur-[1px]" />
-        </div>
+        <HugeTitle className="leading-[0.85] text-[13vw] md:text-[12vw]">
+          不Coding<br />的haa
+        </HugeTitle>
         <div className="mt-8 md:mt-16 w-full flex justify-end">
            <div className="flex flex-col gap-4 md:gap-6 text-right max-w-4xl">
              <p className="font-serif text-lg md:text-3xl italic leading-relaxed text-foreground/90">
