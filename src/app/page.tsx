@@ -5,6 +5,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { HugeTitle, SectionHeader, BodyText, TechText } from "@/components/Typography";
 import FadeIn from "@/components/FadeIn";
 import Image from "next/image";
+import { FaGithub } from "react-icons/fa";
+import { SiXiaohongshu } from "react-icons/si";
 
 export default function Home() {
   return (
@@ -167,7 +169,7 @@ function SkillsSection() {
             {skills.map((skillGroup, index) => (
               <div key={skillGroup.category} className="flex flex-col border-l border-foreground/10 pl-4 md:pl-8">
                 <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-8">
-                   <span className="font-mono text-[10px] md:text-xs border border-[var(--accent-light)] text-accent rounded-full w-5 h-5 md:w-6 md:h-6 flex items-center justify-center">{index + 1}</span>
+                   <span className="font-mono text-[10px] md:text-xs border border-(--accent-light) text-accent rounded-full w-5 h-5 md:w-6 md:h-6 flex items-center justify-center">{index + 1}</span>
                    <TechText className="text-accent tracking-widest">{skillGroup.category}</TechText>
                 </div>
                 <ul className="space-y-4">
@@ -338,7 +340,7 @@ function FooterSection() {
           className="group relative border-r border-b md:border-b-0 border-foreground/10 flex flex-col justify-between p-12 hover:bg-foreground hover:text-background active:bg-foreground active:text-background transition-colors duration-200"
         >
            <div className="flex justify-between items-start">
-              <TechText className="group-hover:text-background/70 group-active:text-background/70 transition-colors">SOCIAL LINK 01</TechText>
+              <FaGithub className="text-4xl md:text-6xl group-hover:text-background/70 group-active:text-background/70 transition-colors" />
               <span className="text-4xl group-hover:rotate-45 group-active:rotate-45 transition-transform duration-500">↗</span>
            </div>
            <div>
@@ -354,7 +356,7 @@ function FooterSection() {
           className="group relative flex flex-col justify-between p-12 hover:bg-[#FF2442] hover:text-white active:bg-[#FF2442] active:text-white transition-colors duration-200"
         >
            <div className="flex justify-between items-start">
-              <TechText className="group-hover:text-white/70 group-active:text-white/70 transition-colors">SOCIAL LINK 02</TechText>
+              <SiXiaohongshu className="text-4xl md:text-6xl group-hover:text-white/70 group-active:text-white/70 transition-colors" />
               <span className="text-4xl group-hover:rotate-45 group-active:rotate-45 transition-transform duration-500">↗</span>
            </div>
            <div>

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import Navbar from "@/components/Navbar";
+import { Analytics } from "@vercel/analytics/react";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -31,8 +33,10 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${inter.variable} ${playfair.variable} antialiased bg-background text-foreground overflow-x-hidden`}
       >
+        <Navbar />
         <SmoothScroll>{children}</SmoothScroll>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
