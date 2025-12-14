@@ -5,8 +5,9 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { HugeTitle, SectionHeader, BodyText, TechText } from "@/components/Typography";
 import FadeIn from "@/components/FadeIn";
 import Image from "next/image";
-import { FaGithub } from "react-icons/fa";
-import { SiXiaohongshu } from "react-icons/si";
+import { FaGithub, FaReact, FaNodeJs, FaEnvelope, FaMapMarkerAlt, FaDatabase } from "react-icons/fa";
+import { SiXiaohongshu, SiNextdotjs, SiTypescript, SiTailwindcss, SiFramer, SiPuppeteer, SiVercel, SiAnthropic } from "react-icons/si";
+import { VscCopilot } from "react-icons/vsc";
 
 export default function Home() {
   return (
@@ -104,11 +105,17 @@ function BioSection() {
 
             <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-8">
                <div className="space-y-1 md:space-y-2">
-                  <TechText className="block text-accent">CONTACT</TechText>
+                  <div className="flex items-center gap-2">
+                    <FaEnvelope className="text-secondary/60" />
+                    <TechText className="block text-accent">CONTACT</TechText>
+                  </div>
                   <a href="mailto:haayy@foxmail.com" className="font-sans text-base md:text-lg hover:underline decoration-1 underline-offset-4 break-all">haayy@foxmail.com</a>
                </div>
                <div className="space-y-1 md:space-y-2">
-                  <TechText className="block text-accent">LOCATION</TechText>
+                  <div className="flex items-center gap-2">
+                    <FaMapMarkerAlt className="text-secondary/60" />
+                    <TechText className="block text-accent">LOCATION</TechText>
+                  </div>
                   <p className="font-sans text-base md:text-lg">Fuzhou University</p>
                </div>
             </div>
@@ -153,9 +160,34 @@ function BioSection() {
 
 function SkillsSection() {
   const skills = [
-    { category: "MCP Servers", items: ["sequential-thinking", "puppeteer", "fetcher", "github", "context7", "metaso", "Exa Search"] },
-    { category: "AI Stack", items: ["Cursor", "Claude Code", "v0.dev", "Github Copilot"] },
-    { category: "Core Tech", items: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "React Native"] }
+    { 
+      category: "MCP Servers", 
+      items: [
+        { name: "sequential-thinking", icon: <FaDatabase /> }, 
+        { name: "puppeteer", icon: <SiPuppeteer /> }, 
+        { name: "fetcher", icon: <FaNodeJs /> }, 
+        { name: "github", icon: <FaGithub /> }
+      ] 
+    },
+    { 
+      category: "AI Stack", 
+      items: [
+        { name: "Cursor", icon: <VscCopilot /> }, 
+        { name: "Claude Code", icon: <SiAnthropic /> }, 
+        { name: "v0.dev", icon: <SiVercel /> }, // Placeholder for v0
+        { name: "Github Copilot", icon: <VscCopilot /> }
+      ] 
+    },
+    { 
+      category: "Core Tech", 
+      items: [
+        { name: "Next.js", icon: <SiNextdotjs /> }, 
+        { name: "TypeScript", icon: <SiTypescript /> }, 
+        { name: "Tailwind CSS", icon: <SiTailwindcss /> }, 
+        { name: "Framer Motion", icon: <SiFramer /> }, 
+        { name: "React Native", icon: <FaReact /> }
+      ] 
+    }
   ];
 
   return (
@@ -172,10 +204,11 @@ function SkillsSection() {
                    <span className="font-mono text-[10px] md:text-xs border border-(--accent-light) text-accent rounded-full w-5 h-5 md:w-6 md:h-6 flex items-center justify-center">{index + 1}</span>
                    <TechText className="text-accent tracking-widest">{skillGroup.category}</TechText>
                 </div>
-                <ul className="space-y-4">
+                <ul className="grid grid-cols-2 gap-4">
                   {skillGroup.items.map((item) => (
-                    <li key={item} className="font-serif text-xl md:text-3xl text-foreground/80 hover:text-foreground hover:translate-x-2 transition-transform duration-300 cursor-default">
-                      {item}
+                    <li key={item.name} className="flex items-center gap-2 font-serif text-lg md:text-2xl text-foreground/80 hover:text-foreground hover:translate-x-2 transition-transform duration-300 cursor-default">
+                      <span className="text-xl md:text-2xl opacity-60">{item.icon}</span>
+                      {item.name}
                     </li>
                   ))}
                 </ul>

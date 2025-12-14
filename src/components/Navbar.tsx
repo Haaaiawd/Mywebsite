@@ -7,10 +7,8 @@ import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/", label: "HOME" },
-  { href: "#about", label: "ABOUT" },
-  { href: "#work", label: "WORK" },
-  { href: "#aura", label: "AURA" },
-  { href: "#community", label: "CONNECT" },
+  { href: "/work", label: "WORK" },
+  { href: "/blog", label: "BLOG" },
 ];
 
 export default function Navbar() {
