@@ -5,10 +5,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
+import { FaHome, FaBriefcase, FaPenNib } from "react-icons/fa";
+
 const links = [
-  { href: "/", label: "HOME" },
-  { href: "/work", label: "WORK" },
-  { href: "/blog", label: "BLOG" },
+  { href: "/", label: "HOME", icon: FaHome },
+  { href: "/work", label: "WORK", icon: FaBriefcase },
+  { href: "/blog", label: "BLOG", icon: FaPenNib },
 ];
 
 export default function Navbar() {
@@ -37,7 +39,7 @@ export default function Navbar() {
       >
         <Link href="/" className="z-50 group">
            <span className="font-serif text-xl md:text-2xl font-bold tracking-tighter mix-blend-difference text-foreground">
-             haa.
+             不Coding的haa.
            </span>
         </Link>
 
@@ -47,8 +49,9 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-xs uppercase tracking-[0.2em] text-foreground/60 hover:text-foreground transition-colors relative group"
+              className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-foreground/60 hover:text-foreground transition-colors relative group"
             >
+              <link.icon className="text-sm opacity-70 group-hover:opacity-100 transition-opacity" />
               {link.label}
               <span className="absolute -bottom-1 left-0 w-0 h-px bg-foreground transition-all duration-300 group-hover:w-full" />
             </Link>
@@ -94,11 +97,12 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + i * 0.05 }}
                 >
-                  <Link
+                    <Link
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="font-serif text-4xl text-foreground hover:text-accent transition-colors"
+                    className="flex items-center gap-3 font-serif text-4xl text-foreground hover:text-accent transition-colors"
                   >
+                    <link.icon className="text-3xl opacity-50" />
                     {link.label}
                   </Link>
                 </motion.div>

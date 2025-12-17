@@ -1,83 +1,31 @@
-"use client";
 
-import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { HugeTitle, SectionHeader, BodyText, TechText } from "@/components/Typography";
+import { getLatestPosts } from "@/lib/ghost";
+import HeroSection from "@/components/sections/HeroSection";
+import { SectionHeader, BodyText, TechText } from "@/components/Typography";
 import FadeIn from "@/components/FadeIn";
 import Image from "next/image";
-import { FaGithub, FaReact, FaNodeJs, FaEnvelope, FaMapMarkerAlt, FaDatabase } from "react-icons/fa";
+import Link from "next/link";
+import { FaGithub, FaReact, FaEnvelope, FaMapMarkerAlt, FaDatabase, FaGlobe } from "react-icons/fa";
 import { SiXiaohongshu, SiNextdotjs, SiTypescript, SiTailwindcss, SiFramer, SiPuppeteer, SiVercel, SiAnthropic } from "react-icons/si";
 import { VscCopilot } from "react-icons/vsc";
+import { BsCursorFill } from "react-icons/bs";
 
-export default function Home() {
+export const revalidate = 600;
+
+export default async function Home() {
+  const posts = await getLatestPosts(3);
+
   return (
     <main className="min-h-screen px-6 md:px-12 py-24 selection:bg-accent selection:text-white">
       <HeroSection />
       <BioSection />
       <SkillsSection />
       <ProjectsSection />
+      <LatestJournalSection posts={posts} />
       <AuraSection />
       <CommunitySection />
       <FooterSection />
     </main>
-  );
-}
-
-function HeroSection() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-  // Client-side only time to prevent hydration mismatch
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    // This is the standard pattern for client-side only rendering
-    // eslint-disable-next-line
-    setMounted(true);
-  }, []);
-
-  return (
-    <section ref={ref} className="min-h-screen snap-start flex flex-col justify-between py-6 md:py-12 relative overflow-hidden">
-      {/* Status Bar */}
-      <motion.div style={{ opacity }} className="flex justify-between items-start z-10 w-full border-b border-foreground/10 pb-3 md:pb-6">
-        <div className="flex flex-col">
-           <TechText className="text-[10px] md:text-xs">FUZHOU, CN</TechText>
-           <TechText className="text-[10px] md:text-xs">26°04&apos;N 119°17&apos;E</TechText>
-        </div>
-        <div className="flex flex-col items-end">
-           <TechText className="text-[10px] md:text-xs">
-             {mounted ? `LOCAL TIME: ${new Date().toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})}` : 'LOCAL TIME: --:--'}
-           </TechText>
-        </div>
-      </motion.div>
-
-      <motion.div style={{ y, opacity }} className="z-10 flex-1 flex flex-col justify-center">
-        <TechText className="block mb-4 md:mb-6 text-[10px] md:text-sm tracking-[0.2em] md:tracking-[0.3em]">e/acc · PRODUCT MANAGER · INDIE DEVELOPER</TechText>
-        <HugeTitle className="leading-[0.85] text-[13vw] md:text-[12vw]">
-          不Coding<br />的haa
-        </HugeTitle>
-        <div className="mt-8 md:mt-16 w-full flex justify-end">
-           <div className="flex flex-col gap-4 md:gap-6 text-right max-w-4xl">
-             <p className="font-serif text-lg md:text-3xl italic leading-relaxed text-foreground/90">
-               &quot;I know this age will wound.<br/>
-               But I have no choice except to feed the fire.<br/>
-               Not out of faith—<br/>
-               but because the moment it dies, so does civilization.&quot;
-             </p>
-           </div>
-        </div>
-      </motion.div>
-
-      {/* Bottom Bar */}
-      <motion.div style={{ opacity }} className="flex justify-between items-end z-10 w-full border-t border-foreground/10 pt-3 md:pt-6">
-         <TechText className="text-[10px] md:text-xs">SCROLL FOR EXPERIENCE</TechText>
-      </motion.div>
-    </section>
   );
 }
 
@@ -90,13 +38,16 @@ function BioSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start h-full">
-          <div className="md:col-span-5 flex flex-col justify-between h-full space-y-6 md:space-y-12">
+          <div className="md:col-span-12 lg:col-span-5 flex flex-col justify-between h-full space-y-6 md:space-y-12">
             <div>
+              <TechText className="block mb-4 text-[10px] md:text-xs tracking-[0.2em] text-accent">e/acc · PRODUCT MANAGER · INDIE DEVELOPER</TechText>
+              <div className="relative">
               <p className="font-serif text-2xl md:text-4xl leading-tight text-foreground mb-4 md:mb-8">
                 AI 编程工具重度用户.<br/>
                 WaytoAGI 校园大使.<br/>
                 211在读.
               </p>
+              </div>
               <BodyText className="text-sm md:text-lg text-secondary/80">
                 Passionate about bridging the gap between design and code through AI. 
                 Focusing on &quot;Typography as UI&quot; and creating digital experiences that feel physical.
@@ -121,8 +72,8 @@ function BioSection() {
             </div>
           </div>
 
-          <div className="md:col-span-7 flex flex-col md:grid md:grid-cols-2 gap-3 md:gap-4 h-full">
-             <div className="relative w-full h-[40vh] md:h-[60vh] grayscale hover:grayscale-0 transition-all duration-700 ease-out">
+          <div className="md:col-span-12 lg:col-span-7 flex flex-col items-center justify-center h-full">
+             <div className="relative w-full h-[50vh] md:h-[70vh] grayscale hover:grayscale-0 transition-all duration-700 ease-out">
               <Image 
                 src="/images/avater.png" 
                 alt="Avatar" 
@@ -131,31 +82,79 @@ function BioSection() {
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-            <div className="grid grid-cols-2 md:flex md:flex-col gap-3 md:gap-4 md:h-[60vh]">
-                <div className="relative w-full h-[20vh] md:h-1/2 grayscale hover:grayscale-0 transition-all duration-500">
-                   <Image 
-                     src="/images/gdg-cert.jpg" 
-                     alt="GDG Certificate" 
-                     fill 
-                     className="object-cover" 
-                     sizes="(max-width: 768px) 50vw, 25vw"
-                   />
-                </div>
-                <div className="relative w-full h-[20vh] md:h-1/2 grayscale hover:grayscale-0 transition-all duration-500">
-                   <Image 
-                     src="/images/datawhale-cert.jpg" 
-                     alt="Datawhale Certificate" 
-                     fill 
-                     className="object-cover" 
-                     sizes="(max-width: 768px) 50vw, 25vw"
-                   />
-                </div>
-            </div>
           </div>
         </div>
       </FadeIn>
     </section>
   );
+}
+
+import { Post } from "@/types/ghost";
+
+function LatestJournalSection({ posts }: { posts: Post[] }) {
+    if (!posts || posts.length === 0) return null;
+
+    return (
+        <section className="min-h-screen snap-start flex flex-col justify-center py-8 md:py-24">
+            <FadeIn className="h-full flex flex-col">
+                <div className="flex justify-between items-baseline border-b border-foreground/10 pb-4 md:pb-6 mb-8 md:mb-12">
+                    <SectionHeader className="mb-0">Journal</SectionHeader>
+                    <Link href="/blog" className="text-xs md:text-sm uppercase tracking-widest text-secondary hover:text-accent transition-colors">
+                        View All Posts ↗
+                    </Link>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+                    {posts.map((post) => (
+                         <Link key={post.id} href={`/blog/${post.slug}`} className="group block h-full">
+                            <article className="flex flex-col h-full">
+                                <div className="relative aspect-4/3 w-full overflow-hidden bg-secondary/5 mb-6">
+                                    {post.feature_image ? (
+                                        <Image
+                                            src={post.feature_image}
+                                            alt={post.title || "Blog post"}
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 33vw"
+                                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full flex items-center justify-center bg-secondary/10 text-secondary/30">
+                                            <span className="font-serif italic">No Image</span>
+                                        </div>
+                                    )}
+                                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
+                                </div>
+
+                                <div className="flex flex-col flex-1">
+                                    <div className="flex items-center gap-3 text-[10px] md:text-xs uppercase tracking-widest text-accent mb-3 font-medium">
+                                        {post.published_at && (
+                                            <time dateTime={post.published_at}>
+                                                {new Date(post.published_at).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}
+                                            </time>
+                                        )}
+                                         {post.tags?.[0] && (
+                                            <>
+                                                <span className="w-px h-3 bg-accent/40" />
+                                                <span>{post.tags[0].name}</span>
+                                            </>
+                                        )}
+                                    </div>
+                                    
+                                    <h3 className="text-xl md:text-2xl font-serif font-medium leading-tight mb-3 group-hover:text-secondary transition-colors duration-300">
+                                        {post.title}
+                                    </h3>
+                                    
+                                    <p className="text-secondary/70 line-clamp-3 text-sm leading-relaxed font-light">
+                                        {post.excerpt}
+                                    </p>
+                                </div>
+                            </article>
+                        </Link>
+                    ))}
+                </div>
+            </FadeIn>
+        </section>
+    );
 }
 
 function SkillsSection() {
@@ -165,14 +164,14 @@ function SkillsSection() {
       items: [
         { name: "sequential-thinking", icon: <FaDatabase /> }, 
         { name: "puppeteer", icon: <SiPuppeteer /> }, 
-        { name: "fetcher", icon: <FaNodeJs /> }, 
+        { name: "fetcher", icon: <FaGlobe /> }, 
         { name: "github", icon: <FaGithub /> }
       ] 
     },
     { 
       category: "AI Stack", 
       items: [
-        { name: "Cursor", icon: <VscCopilot /> }, 
+        { name: "Cursor", icon: <BsCursorFill /> }, 
         { name: "Claude Code", icon: <SiAnthropic /> }, 
         { name: "v0.dev", icon: <SiVercel /> }, // Placeholder for v0
         { name: "Github Copilot", icon: <VscCopilot /> }
@@ -278,7 +277,7 @@ function AuraSection() {
         </div>
         
         <div className="flex-1 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-          <div className="md:col-span-7 flex flex-col justify-center">
+          <div className="md:col-span-12 lg:col-span-7 flex flex-col justify-center">
             <TechText className="mb-3 md:mb-4 block text-accent text-[10px] md:text-xs">TEAM LEADER · PRODUCT MANAGER · SOFTWARE DEV</TechText>
             <h3 className="font-serif text-4xl md:text-7xl mb-4 md:mb-6">AURA</h3>
             <p className="font-serif text-lg md:text-2xl text-secondary/60 italic mb-6 md:mb-8">安芮 · AI婴儿监测床垫</p>
@@ -297,7 +296,7 @@ function AuraSection() {
             </div>
           </div>
           
-          <div className="md:col-span-5 relative h-[35vh] md:h-[50vh] grayscale hover:grayscale-0 transition-all duration-700">
+          <div className="md:col-span-12 lg:col-span-5 relative h-[35vh] md:h-[50vh] grayscale hover:grayscale-0 transition-all duration-700">
             <Image 
               src="/images/aura.png" 
               alt="AURA Project" 
